@@ -35,6 +35,8 @@ export default function App() {
   };
 
   const onOpenField = (row, column) => {
+    if (gameState.lost || gameState.won) return;
+
     const board = cloneBoard(gameState.board);
     openField(board, row, column);
     const lost = hasExploded(board);
@@ -52,6 +54,8 @@ export default function App() {
   };
 
   const onLongPress = (row, column) => {
+    if (gameState.lost || gameState.won) return;
+
     const board = cloneBoard(gameState.board);
     invertFlag(board, row, column);
     const won = wonGame(board);
